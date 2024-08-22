@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Diligent Graphics">
+    <title>Diligent Graphics</title>
+    <link rel="icon" href="images/header/diligentgraphics-icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <a href="https://diligentgraphics.com/" target="_blank">
+        <img src="images/header/diligentgraphics-logo.png" alt="Diligent Graphics" class="logo">
+    </a>
+    <a href="https://github.com/DiligentGraphics/DiligentEngine" class="github-link" target="_blank">
+        <img src="images/header/github-mark-white.png" alt="GitHub">
+    </a>
+</header>
+
+<div class="container">
+    <nav>
+        <h2>Categories</h2>
+        <ul>
+            <li><a href="#tutorials">Tutorials</a></li>
+            <li><a href="#samples">Samples</a></li>
+            <li><a href="#known-issues">Known issues</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <div class="search-bar">
+            <input type="text" placeholder="Search Example">
+            <span class="search-icon"></span>
+        </div>
+
+        <section id="tutorials">
+            <h2>Tutorials</h2>
+            <div class="grid" id="tutorialGrid">
+            </div>
+        </section>
+
+        <section id="samples">
+            <h2>Samples</h2>
+            <div class="grid" id="samplesGrid">
+            </div>
+        </section>
+        <section id="known-issues">
+            <h2>Known issues</h2>
+            <ul>
+                <li>14 - Compute Shader tutorial doesn't work on WebGL.</li>
+                <li>18 - Queries tutorial doesn't work on WebGPU.</li>
+                <li>19 - Render Passes tutorial doesn't work on WebGL.</li>
+                <li>Atmosphere sample doesn't work on WebGL.</li>
+                <li>Shadows sample has artifacts on WebGL.</li>
+            </ul>
+        </section>
+    </div>
+</div>
+
+<script src="enable-threads.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
