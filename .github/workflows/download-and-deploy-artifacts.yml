@@ -1,0 +1,30 @@
+name: Download and Deploy Artifacts
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Ubuntu -> Build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Download artifacts
+      if: success()
+      working-directory: ${{github.workspace}}
+      run: |
+        python ./download_artifacts.py -t ${{ secrets.GITHUB_TOKEN }} -d ./BuildArtifacts
+
+    - name: Deploy to GitHub Pages
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git checkout --orphan gh-pages
+        git rm -rf .
+        cp -r BuildArtifacts/* .
+        rm -rf BuildArtifacts
+        git add .
+        git commit -m "Deploy to GitHub Pages"
+        git push -f origin gh-pages
