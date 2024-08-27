@@ -20,7 +20,10 @@ def get_latest_successful_run_id(github_token):
         
         successful_emscripten_runs = [
             run for run in runs 
-            if run['conclusion'] == 'success' and run['name'] == 'Emscripten build' and run['event'] == 'push'
+            if run['conclusion'] == 'success'
+            and run['name'] == 'Emscripten build'
+            and run['event'] == 'push'
+            and run['head_branch'] == 'master'
         ]
         
         if successful_emscripten_runs:

@@ -1,6 +1,11 @@
 name: Download and Deploy Artifacts
 
-on: [push]
+on:
+  repository_dispatch:
+    types: [rebuild-wasm-modules]
+  push:
+    branches:
+      - master
 
 jobs:
   build:
