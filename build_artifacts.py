@@ -30,7 +30,8 @@ BUILD_TARGETS = [
 
     "Atmosphere",
     "ImguiDemo",
-    "Shadows"
+    "Shadows",
+    "GLTFViewer"
 ]
 
 def extract_repoitory_name(repository_url):

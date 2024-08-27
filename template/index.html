@@ -23,6 +23,7 @@
     <nav>
         <h2>Categories</h2>
         <ul>
+            <li><a href="#diligent-engine">Description</a></li>
             <li><a href="#tutorials">Tutorials</a></li>
             <li><a href="#samples">Samples</a></li>
             <li><a href="#known-issues">Known issues</a></li>
@@ -30,6 +31,35 @@
     </nav>
 
     <div class="content">
+        <section id="diligent-engine">
+            <div class="engine-header">
+                <h1>Diligent Engine</h1>
+                <img src="images/header/diligentgraphics-logo.png" height="64" alt="Diligent Graphics Logo">
+            </div>
+
+            <p class="description">
+                <a href="http://diligentgraphics.com/diligent-engine/" target="_blank">
+                Diligent Engine</a> is a lightweight cross-platform graphics API abstraction library and rendering framework.
+                It is designed to take full advantage of Direct3D12, Vulkan, Metal, and WebGPU, while supporting older platforms via Direct3D11, OpenGL, OpenGLES, and WebGL.
+                Diligent Engine exposes a common front-end API and uses HLSL as a universal shading language on all platforms and rendering back-ends.
+                Platform-specific shader representations (GLSL, MSL, DX bytecode, or SPIRV) can be used with corresponding back-ends.
+                The engine is intended to be used as a graphics subsystem in a game engine or any other 3D application.
+                It is distributed under the <a href="https://github.com/DiligentGraphics/DiligentEngine/blob/master/License.txt" target="_blank">Apache 2.0 license</a> and is free to use.
+            </p>
+
+            <div class="badges">
+                <a href="https://github.com/DiligentGraphics/DiligentEngine/blob/master/License.txt" target="_blank">
+                    <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License">
+                </a>
+                <a href="https://discord.gg/t7HGBK7" target="_blank">
+                    <img src="https://img.shields.io/discord/730091778081947680?logo=discord" alt="Chat on Discord">
+                </a>
+                <a href="https://github.com/DiligentGraphics/DiligentEngine/actions/" target="_blank">
+                    <img src="https://img.shields.io/github/actions/workflow/status/DiligentGraphics/DiligentEngine/build-emscripten.yml?branch=master&label=Build%20Status">
+                </a>
+            </div>
+        </section>
+
         <div class="search-bar">
             <input type="text" placeholder="Search Example">
             <span class="search-icon"></span>
@@ -49,11 +79,7 @@
         <section id="known-issues">
             <h2>Known issues</h2>
             <ul>
-                <li>14 - Compute Shader tutorial doesn't work on WebGL.</li>
                 <li>18 - Queries tutorial doesn't work on WebGPU.</li>
-                <li>19 - Render Passes tutorial doesn't work on WebGL.</li>
-                <li>Atmosphere sample doesn't work on WebGL.</li>
-                <li>Shadows sample has artifacts on WebGL.</li>
             </ul>
         </section>
     </div>
