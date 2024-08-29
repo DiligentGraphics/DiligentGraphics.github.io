@@ -187,7 +187,7 @@ function createCard(item) {
             <h3>${item.title}</h3>
             <p>${item.description}</p>
             <div class="buttons-container">
-                <a href="${item.tutorialLink}" class="view-link">Run sample</a>
+                <a href="${item.tutorialLink}" class="view-link" target="_blank">Run sample</a>
                 <a href="${item.githubLink}" class="github-button" target="_blank">View on GitHub</a>
             </div>
         </div>
