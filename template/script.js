@@ -142,6 +142,14 @@ const tutorials = [
         image: "images/content/tutorials/Tutorial27_PostProcessing.jpg",
         tutorialLink: "wasm-modules/Tutorial27_PostProcessing/Tutorial27_PostProcessing.html",
         githubLink: "https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial27_PostProcessing"
+    },
+    {
+        id: "Tutorial29_OIT",
+        title: "29 - Order-Independent Transparency",
+        description: "This tutorial demonstrates how to implement order-independent transparency (OIT) methods to render transparent objects without sorting.",
+        image: "images/content/tutorials/Tutorial29_OIT.jpg",
+        tutorialLink: "wasm-modules/Tutorial29_OIT/Tutorial29_OIT.html",
+        githubLink: "https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial29_OIT"
     }
 ];
 
