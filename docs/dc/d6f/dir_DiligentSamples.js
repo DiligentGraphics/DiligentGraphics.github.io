@@ -1,0 +1,56 @@
+var dir_DiligentSamples =
+[
+    [ "Overview", "d2/dd7/DiligentSamples_README.html", [
+      [ "Table of Contents", "d2/dd7/DiligentSamples_README.html#autotoc_md233", null ],
+      [ "Tutorials", "d2/dd7/DiligentSamples_README.html#autotoc_md234", [
+        [ "Tutorial 01 - Hello Triangle", "d2/dd7/DiligentSamples_README.html#autotoc_md235", null ],
+        [ "Tutorial 02 - Cube", "d2/dd7/DiligentSamples_README.html#autotoc_md236", null ],
+        [ "Tutorial 03 - Texturing", "d2/dd7/DiligentSamples_README.html#autotoc_md237", null ],
+        [ "Tutorial 03 - Texturing-C", "d2/dd7/DiligentSamples_README.html#autotoc_md238", null ],
+        [ "Tutorial 03 - Texturing-DotNet", "d2/dd7/DiligentSamples_README.html#autotoc_md239", null ],
+        [ "Tutorial 04 - Instancing", "d2/dd7/DiligentSamples_README.html#autotoc_md240", null ],
+        [ "Tutorial 05 - Texture Array", "d2/dd7/DiligentSamples_README.html#autotoc_md241", null ],
+        [ "Tutorial 06 - Multithreading", "d2/dd7/DiligentSamples_README.html#autotoc_md242", null ],
+        [ "Tutorial 07 - Geometry Shader", "d2/dd7/DiligentSamples_README.html#autotoc_md243", null ],
+        [ "Tutorial 08 - Tessellation", "d2/dd7/DiligentSamples_README.html#autotoc_md244", null ],
+        [ "Tutorial 09 - Quads", "d2/dd7/DiligentSamples_README.html#autotoc_md245", null ],
+        [ "Tutorial 10 - Data Streaming", "d2/dd7/DiligentSamples_README.html#autotoc_md246", null ],
+        [ "Tutorial 11 - Resource Updates", "d2/dd7/DiligentSamples_README.html#autotoc_md247", null ],
+        [ "Tutorial 12 - Render Target", "d2/dd7/DiligentSamples_README.html#autotoc_md248", null ],
+        [ "Tutorial 13 - Shadow Map", "d2/dd7/DiligentSamples_README.html#autotoc_md249", null ],
+        [ "Tutorial 14 - Compute Shader", "d2/dd7/DiligentSamples_README.html#autotoc_md250", null ],
+        [ "Tutorial 15 - Multiple Windows", "d2/dd7/DiligentSamples_README.html#autotoc_md251", null ],
+        [ "Tutorial 16 - Bindless Resources", "d2/dd7/DiligentSamples_README.html#autotoc_md252", null ],
+        [ "Tutorial 17 - MSAA", "d2/dd7/DiligentSamples_README.html#autotoc_md253", null ],
+        [ "Tutorial 18 - Queries", "d2/dd7/DiligentSamples_README.html#autotoc_md254", null ],
+        [ "Tutorial 19 - Render passes", "d2/dd7/DiligentSamples_README.html#autotoc_md255", null ],
+        [ "Tutorial 20 - Mesh Shader", "d2/dd7/DiligentSamples_README.html#autotoc_md256", null ],
+        [ "Tutorial 21 - Ray Tracing", "d2/dd7/DiligentSamples_README.html#autotoc_md257", null ],
+        [ "Tutorial 22 - Hybrid Rendering", "d2/dd7/DiligentSamples_README.html#autotoc_md258", null ],
+        [ "Tutorial 23 - Command Queues", "d2/dd7/DiligentSamples_README.html#autotoc_md259", null ],
+        [ "Tutorial 24 - Variable Rate Shading", "d2/dd7/DiligentSamples_README.html#autotoc_md260", null ],
+        [ "Tutorial 25 - Render State Packager", "d2/dd7/DiligentSamples_README.html#autotoc_md261", null ],
+        [ "Tutorial 26 - Render State Cache", "d2/dd7/DiligentSamples_README.html#autotoc_md262", null ],
+        [ "Tutorial 27 - Post-Processing", "d2/dd7/DiligentSamples_README.html#autotoc_md263", null ],
+        [ "Tutorial 28 - Hello OpenXR", "d2/dd7/DiligentSamples_README.html#autotoc_md264", null ],
+        [ "Tutorial 29 - OIT", "d2/dd7/DiligentSamples_README.html#autotoc_md265", null ]
+      ] ],
+      [ "Samples", "d2/dd7/DiligentSamples_README.html#autotoc_md266", [
+        [ "Atmospheric Light Scattering sample", "d2/dd7/DiligentSamples_README.html#autotoc_md267", null ],
+        [ "GLFW Demo", "d2/dd7/DiligentSamples_README.html#autotoc_md268", null ],
+        [ "GLTF Viewer", "d2/dd7/DiligentSamples_README.html#autotoc_md269", null ],
+        [ "USD Viewer", "d2/dd7/DiligentSamples_README.html#autotoc_md270", null ],
+        [ "Shadows", "d2/dd7/DiligentSamples_README.html#autotoc_md271", null ],
+        [ "Dear ImGui Demo", "d2/dd7/DiligentSamples_README.html#autotoc_md272", null ],
+        [ "Nuklear Demo", "d2/dd7/DiligentSamples_README.html#autotoc_md273", null ],
+        [ "Hello AR", "d2/dd7/DiligentSamples_README.html#autotoc_md274", null ],
+        [ "Asteroids", "d2/dd7/DiligentSamples_README.html#autotoc_md275", null ],
+        [ "[Unity Plugin](UnityPlugin)", "d2/dd7/DiligentSamples_README.html#autotoc_md276", null ]
+      ] ],
+      [ "Build and Run Instructions", "d2/dd7/DiligentSamples_README.html#autotoc_md277", null ],
+      [ "License", "d2/dd7/DiligentSamples_README.html#autotoc_md278", null ],
+      [ "Contributing", "d2/dd7/DiligentSamples_README.html#autotoc_md279", null ]
+    ] ],
+    [ "Samples", "d3/dce/dir_DiligentSamples_Samples.html", "d3/dce/dir_DiligentSamples_Samples" ],
+    [ "Tutorials", "dd/da1/dir_DiligentSamples_Tutorials.html", "dd/da1/dir_DiligentSamples_Tutorials" ]
+];
