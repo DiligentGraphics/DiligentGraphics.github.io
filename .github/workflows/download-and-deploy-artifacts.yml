@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - name: Install Doxygen
-      uses: DiligentGraphics/github-action/install-doxygen@v6
+      uses: DiligentGraphics/github-action/install-doxygen@v16
 
     - name: Checkout code
       uses: actions/checkout@v4
