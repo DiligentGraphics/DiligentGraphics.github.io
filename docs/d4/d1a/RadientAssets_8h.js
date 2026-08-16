@@ -1,0 +1,65 @@
+var RadientAssets_8h =
+[
+    [ "Diligent::RadientAssetManagerDesc", "dc/d64/structDiligent_1_1RadientAssetManagerDesc.html", "dc/d64/structDiligent_1_1RadientAssetManagerDesc" ],
+    [ "Diligent::RadientAssetManagerCreateInfo", "dc/d0b/structDiligent_1_1RadientAssetManagerCreateInfo.html", "dc/d0b/structDiligent_1_1RadientAssetManagerCreateInfo" ],
+    [ "Diligent::RadientColorRGBA8", "d0/d46/structDiligent_1_1RadientColorRGBA8.html", null ],
+    [ "Diligent::RadientBoneIndices4", "d6/dcb/structDiligent_1_1RadientBoneIndices4.html", null ],
+    [ "Diligent::RadientMeshPrimitiveCreateInfo", "d1/d8d/structDiligent_1_1RadientMeshPrimitiveCreateInfo.html", "d1/d8d/structDiligent_1_1RadientMeshPrimitiveCreateInfo" ],
+    [ "Diligent::RadientMeshCreateInfo", "d3/d30/structDiligent_1_1RadientMeshCreateInfo.html", "d3/d30/structDiligent_1_1RadientMeshCreateInfo" ],
+    [ "Diligent::RadientMaterialCreateInfo", "d7/dd1/structDiligent_1_1RadientMaterialCreateInfo.html", "d7/dd1/structDiligent_1_1RadientMaterialCreateInfo" ],
+    [ "Diligent::RadientTextureData", "d8/d08/structDiligent_1_1RadientTextureData.html", "d8/d08/structDiligent_1_1RadientTextureData" ],
+    [ "Diligent::RadientSceneLoadInfo", "de/d79/structDiligent_1_1RadientSceneLoadInfo.html", "de/d79/structDiligent_1_1RadientSceneLoadInfo" ],
+    [ "Diligent::IRadientAsset", "d3/de6/structDiligent_1_1IRadientAsset.html", "d3/de6/structDiligent_1_1IRadientAsset" ],
+    [ "Diligent::IRadientMeshAsset", "d9/d1b/structDiligent_1_1IRadientMeshAsset.html", null ],
+    [ "Diligent::IRadientMaterialAsset", "dd/db7/structDiligent_1_1IRadientMaterialAsset.html", null ],
+    [ "Diligent::IRadientTextureAsset", "d0/d9d/structDiligent_1_1IRadientTextureAsset.html", null ],
+    [ "Diligent::IRadientSceneAsset", "dd/d76/structDiligent_1_1IRadientSceneAsset.html", null ],
+    [ "Diligent::IRadientAssetManager", "d3/d24/structDiligent_1_1IRadientAssetManager.html", "d3/d24/structDiligent_1_1IRadientAssetManager" ],
+    [ "Diligent::RadientTextureReleaseDataCallbackType", "d7/dca/namespaceDiligent.html#a5adabd5d3f9bf8a98395aad20d396b11", null ],
+    [ "Diligent::RADIENT_ASSET_TYPE", "d7/dca/namespaceDiligent.html#a4d257ce4fd555af54295a46313cde7fa", [
+      [ "Diligent::RADIENT_ASSET_TYPE_MESH", "d7/dca/namespaceDiligent.html#a4d257ce4fd555af54295a46313cde7faaa2e0b48262a2f73a3abe737a7f9bb8c4", null ],
+      [ "Diligent::RADIENT_ASSET_TYPE_MATERIAL", "d7/dca/namespaceDiligent.html#a4d257ce4fd555af54295a46313cde7faade03cb1ad1e3049b9ab627e138c2342b", null ],
+      [ "Diligent::RADIENT_ASSET_TYPE_TEXTURE", "d7/dca/namespaceDiligent.html#a4d257ce4fd555af54295a46313cde7faaad69d4f9aa722c26b2e3e8b47cab85ab", null ],
+      [ "Diligent::RADIENT_ASSET_TYPE_SCENE", "d7/dca/namespaceDiligent.html#a4d257ce4fd555af54295a46313cde7faae56014b83c43268282e5fc12086d7d8f", null ]
+    ] ],
+    [ "Diligent::RADIENT_INDEX_TYPE", "d7/dca/namespaceDiligent.html#aca22ad7be434f7ca886dc1b38d7a5c92", [
+      [ "Diligent::RADIENT_INDEX_TYPE_NONE", "d7/dca/namespaceDiligent.html#aca22ad7be434f7ca886dc1b38d7a5c92a557ed2e798a9406d40ae4fa3398761f5", null ],
+      [ "Diligent::RADIENT_INDEX_TYPE_UINT16", "d7/dca/namespaceDiligent.html#aca22ad7be434f7ca886dc1b38d7a5c92a02597e20e9957e55d5e0b20346bfb076", null ],
+      [ "Diligent::RADIENT_INDEX_TYPE_UINT32", "d7/dca/namespaceDiligent.html#aca22ad7be434f7ca886dc1b38d7a5c92ae06b9f689388075cbe9f894dcd2fa8de", null ]
+    ] ],
+    [ "Diligent::RADIENT_SCENE_FORMAT", "d7/dca/namespaceDiligent.html#a3af25a796bf0f845f50b906a285a736f", [
+      [ "Diligent::RADIENT_SCENE_FORMAT_AUTO", "d7/dca/namespaceDiligent.html#a3af25a796bf0f845f50b906a285a736fad8eee55314c79f2b28b2a99135a73c28", null ],
+      [ "Diligent::RADIENT_SCENE_FORMAT_GLTF", "d7/dca/namespaceDiligent.html#a3af25a796bf0f845f50b906a285a736fa5289ac15e7a1aa6ddbaad02ab26e199e", null ]
+    ] ],
+    [ "Diligent::RADIENT_TEXTURE_FORMAT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98", [
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_UNKNOWN", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98aaa228fbc10755531bb2a37350443ba60", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_R8_UNORM", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98af5357b64dce225348eb54e2934c24afc", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RG8_UNORM", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98aad6ec40ffaac487618d3bb37abf34a9a", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RGBA8_UNORM", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98a6dfa6b09c64355f5bd709045d92d4401", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RGBA8_UNORM_SRGB", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98a5a58d8c9c74efdfc178f73d79cac5a79", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_R8_UINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98a8406e844ded6346180f4d861a0b0b2ef", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RG8_UINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98a17f7d80637f2c55082041197574570bb", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RGBA8_UINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98a203726bbd6b9f1ab0fcc0b618d6859d6", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_R8_SINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98ae559f8ead954a9e40bcde3a413243c83", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RG8_SINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98a5a7bd7a25a782a09fdefbbd9f3bc1132", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RGBA8_SINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98a2e12eb074e03ad1e5c80ead21f692da2", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_R16_UNORM", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98ac816c785cb59cdef76223e21b4437e62", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RG16_UNORM", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98aca344dc2c1061ad33489cf3f0da1e857", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RGBA16_UNORM", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98aecb1698419734984dcf470c6ad248973", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_R16_UINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98ae210c4e05953253268fbfc5235ee66cb", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RG16_UINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98a8788adb7557eea0a6830b2a442c54d49", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RGBA16_UINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98a3681d52df79282726ac9fa2505f53310", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_R16_SINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98afd63ae5d3c9830d2aab4dc6ece4216ca", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RG16_SINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98a36dec7392cd4e33eb20a1056d76ee82f", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RGBA16_SINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98afe32c28f531ed97575af3625a6a588c5", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_R32_UINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98a7c59efc1715fee0fdb19701576821a7f", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RG32_UINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98a212cbe26eeb8f0e709ea45b69a51cf35", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RGBA32_UINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98abcb16071df394510ac92017d029234e0", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_R32_SINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98ad73977010d14c0259088690be0288747", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RG32_SINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98ac719e432b7f6ef69457774c12facdfe0", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RGBA32_SINT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98a4aa1dc5ebc658a53a2afe0a8a8eda895", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_R32_FLOAT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98ada6dd9a3f7a7610a5cb9a27502263040", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RG32_FLOAT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98ada95cd4315b3cc212c2d81e4aec78741", null ],
+      [ "Diligent::RADIENT_TEXTURE_FORMAT_RGBA32_FLOAT", "d7/dca/namespaceDiligent.html#a5115a53eb7373f70f9834d454b017f98ad8e3fd577b5029e5963efc33d6b8d7f0", null ]
+    ] ]
+];

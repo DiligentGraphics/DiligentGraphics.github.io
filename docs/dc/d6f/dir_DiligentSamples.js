@@ -1,0 +1,57 @@
+var dir_DiligentSamples =
+[
+    [ "Overview", "d2/dd7/DiligentSamples_README.html", [
+      [ "Table of Contents", "d2/dd7/DiligentSamples_README.html#autotoc_md254", null ],
+      [ "Tutorials", "d2/dd7/DiligentSamples_README.html#autotoc_md255", [
+        [ "<a href=\"Tutorials/Tutorial01_HelloTriangle\">Tutorial 01 - Hello Triangle</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md256", null ],
+        [ "<a href=\"Tutorials/Tutorial02_Cube\">Tutorial 02 - Cube</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md257", null ],
+        [ "<a href=\"Tutorials/Tutorial03_Texturing\">Tutorial 03 - Texturing</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md258", null ],
+        [ "<a href=\"Tutorials/Tutorial03_Texturing-C\">Tutorial 03 - Texturing-C</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md259", null ],
+        [ "<a href=\"Tutorials/Tutorial03_Texturing-DotNet\">Tutorial 03 - Texturing-DotNet</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md260", null ],
+        [ "<a href=\"Tutorials/Tutorial04_Instancing\">Tutorial 04 - Instancing</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md261", null ],
+        [ "<a href=\"Tutorials/Tutorial05_TextureArray\">Tutorial 05 - Texture Array</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md262", null ],
+        [ "<a href=\"Tutorials/Tutorial06_Multithreading\">Tutorial 06 - Multithreading</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md263", null ],
+        [ "<a href=\"Tutorials/Tutorial07_GeometryShader\">Tutorial 07 - Geometry Shader</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md264", null ],
+        [ "<a href=\"Tutorials/Tutorial08_Tessellation\">Tutorial 08 - Tessellation</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md265", null ],
+        [ "<a href=\"Tutorials/Tutorial09_Quads\">Tutorial 09 - Quads</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md266", null ],
+        [ "<a href=\"Tutorials/Tutorial10_DataStreaming\">Tutorial 10 - Data Streaming</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md267", null ],
+        [ "<a href=\"Tutorials/Tutorial11_ResourceUpdates\">Tutorial 11 - Resource Updates</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md268", null ],
+        [ "<a href=\"Tutorials/Tutorial12_RenderTarget\">Tutorial 12 - Render Target</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md269", null ],
+        [ "<a href=\"Tutorials/Tutorial13_ShadowMap\">Tutorial 13 - Shadow Map</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md270", null ],
+        [ "<a href=\"Tutorials/Tutorial14_ComputeShader\">Tutorial 14 - Compute Shader</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md271", null ],
+        [ "<a href=\"Tutorials/Tutorial15_MultipleWindows\">Tutorial 15 - Multiple Windows</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md272", null ],
+        [ "<a href=\"Tutorials/Tutorial16_BindlessResources\">Tutorial 16 - Bindless Resources</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md273", null ],
+        [ "<a href=\"https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial17_MSAA\">Tutorial 17 - MSAA</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md274", null ],
+        [ "<a href=\"https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial18_Queries\">Tutorial 18 - Queries</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md275", null ],
+        [ "<a href=\"https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial19_RenderPasses\">Tutorial 19 - Render passes</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md276", null ],
+        [ "<a href=\"https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial20_MeshShader\">Tutorial 20 - Mesh Shader</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md277", null ],
+        [ "<a href=\"https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial21_RayTracing\">Tutorial 21 - Ray Tracing</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md278", null ],
+        [ "<a href=\"https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial22_HybridRendering\">Tutorial 22 - Hybrid Rendering</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md279", null ],
+        [ "<a href=\"https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial23_CommandQueues\">Tutorial 23 - Command Queues</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md280", null ],
+        [ "<a href=\"https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial24_VRS\">Tutorial 24 - Variable Rate Shading</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md281", null ],
+        [ "<a href=\"https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial25_StatePackager\">Tutorial 25 - Render State Packager</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md282", null ],
+        [ "<a href=\"https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial26_StateCache\">Tutorial 26 - Render State Cache</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md283", null ],
+        [ "<a href=\"https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial27_PostProcessing\">Tutorial 27 - Post-Processing</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md284", null ],
+        [ "<a href=\"https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial28_HelloOpenXR\">Tutorial 28 - Hello OpenXR</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md285", null ],
+        [ "<a href=\"https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial29_OIT\">Tutorial 29 - OIT</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md286", null ],
+        [ "<a href=\"https://github.com/DiligentGraphics/DiligentSamples/tree/master/Tutorials/Tutorial30_HelloVisionOS\">Tutorial 30 - Hello visionOS</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md287", null ]
+      ] ],
+      [ "Samples", "d2/dd7/DiligentSamples_README.html#autotoc_md288", [
+        [ "<a href=\"Samples/Atmosphere\">Atmospheric Light Scattering sample</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md289", null ],
+        [ "<a href=\"Samples/GLFWDemo\">GLFW Demo</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md290", null ],
+        [ "<a href=\"Samples/GLTFViewer\">GLTF Viewer</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md291", null ],
+        [ "<a href=\"Samples/USDViewer\">USD Viewer</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md292", null ],
+        [ "<a href=\"Samples/Shadows\">Shadows</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md293", null ],
+        [ "<a href=\"Samples/ImguiDemo\">Dear ImGui Demo</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md294", null ],
+        [ "<a href=\"Samples/NuklearDemo\">Nuklear Demo</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md295", null ],
+        [ "<a href=\"Android/HelloAR\">Hello AR</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md296", null ],
+        [ "<a href=\"Samples/Asteroids\">Asteroids</a>", "d2/dd7/DiligentSamples_README.html#autotoc_md297", null ],
+        [ "[Unity Plugin](UnityPlugin)", "d2/dd7/DiligentSamples_README.html#autotoc_md298", null ]
+      ] ],
+      [ "Build and Run Instructions", "d2/dd7/DiligentSamples_README.html#autotoc_md299", null ],
+      [ "License", "d2/dd7/DiligentSamples_README.html#autotoc_md300", null ],
+      [ "Contributing", "d2/dd7/DiligentSamples_README.html#autotoc_md301", null ]
+    ] ],
+    [ "Samples", "d3/dce/dir_DiligentSamples_Samples.html", "d3/dce/dir_DiligentSamples_Samples" ],
+    [ "Tutorials", "dd/da1/dir_DiligentSamples_Tutorials.html", "dd/da1/dir_DiligentSamples_Tutorials" ]
+];
