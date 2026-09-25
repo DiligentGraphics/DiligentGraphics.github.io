@@ -1,0 +1,25 @@
+var structDiligent_1_1EngineVkCreateInfo =
+[
+    [ "DeviceExtensionCount", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#a68e948e14f096e501e8a1445d99c1e41", null ],
+    [ "DeviceLocalMemoryPageSize", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#aef5e1f092ad787dab2a5c373204025df", null ],
+    [ "DeviceLocalMemoryReserveSize", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#ad9255f9daceb9f1ad2eeb4205e6ad2a0", null ],
+    [ "DynamicDescriptorPoolSize", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#afa03f267d506e3a52d18dbe7b5e0794f", null ],
+    [ "DynamicHeapPageSize", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#a43fd804861b898d7fca83ee5dc76e53c", null ],
+    [ "DynamicHeapSize", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#ab9c0870d52ad5aafc6a19f9a5e436815", null ],
+    [ "FeaturesVk", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#a1d4d42220fda4eace0740c675da5994a", null ],
+    [ "HostVisibleMemoryPageSize", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#ae59522c979f4c286266e3958ae8a0f9c", null ],
+    [ "HostVisibleMemoryReserveSize", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#a3634e630bcb0d750762dc047e4422ee1", null ],
+    [ "IgnoreDebugMessageCount", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#aecba46f91d581281216ca2c971dedf56", null ],
+    [ "InstanceExtensionCount", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#ae471e683157027ee1dc1a1d326a1015c", null ],
+    [ "InstanceLayerCount", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#a05a9132b42caddac4beb08535e15ca15", null ],
+    [ "MainDescriptorPoolSize", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#ad76b07b097ed3c62854c7af35612a3c9", null ],
+    [ "pDeviceExtensionFeatures", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#ab24a108ce47811d319170f81bd6075df", null ],
+    [ "pDxCompilerPath", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#accb7c8440791ac163192e291fe377c45", null ],
+    [ "ppDeviceExtensionNames", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#a9a178917ad3864eb0a30dc221442df53", null ],
+    [ "ppIgnoreDebugMessageNames", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#ab141dcb9340923dff52f2fe5082cf2b4", null ],
+    [ "ppInstanceExtensionNames", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#a2c81b35c281aedbc456ddb1323171c29", null ],
+    [ "ppInstanceLayerNames", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#a9acc5360ad0a38e3bb3fe1f9a8d3ca2a", null ],
+    [ "pVkAllocator", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#abcc190dbc3bde0854aac5687d4eeef44", null ],
+    [ "QueryPoolSizes", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#a12514acc81c1da610e532fad9c9aee53", null ],
+    [ "UploadHeapPageSize", "d0/df4/structDiligent_1_1EngineVkCreateInfo.html#addad35a0961494b2ec677a161cc13b1e", null ]
+];
