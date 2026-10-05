@@ -1,0 +1,365 @@
+#include "common.fxh"
+
+cbuffer cbConstants
+{
+    Constants g_Constants;
+}
+
+struct PSOutput
+{
+    float4 Color : SV_TARGET;
+};
+
+void main(in PSInput   PSIn,
+          out PSOutput PSOut)
+{
+    float4 Color;
+    Color.rgb = ComputeLighting(PSIn.Color.rgb, PSIn.Normal, g_Constants.LightDir.xyz);
+    if (PSIn.Color.a < 0.0)
+    {
+        // Opaque
+        Color.a = 1.0;
+    }
+    else
+    {
+        // Transparent
+        Color.a = lerp(g_Constants.MinOpacity, g_Constants.MaxOpacity, PSIn.Color.a);
+        Color.rgb *= Color.a;
+    }
+    
+#if CONVERT_PS_OUTPUT_TO_GAMMA
+    // Use fast approximation for gamma correction.
+    Color.rgb = pow(Color.rgb, float3(1.0 / 2.2, 1.0 / 2.2, 1.0 / 2.2));
+#endif
+    PSOut.Color = Color;
+}
+#include "common.fxh"
+#include "oit.fxh"
+
+cbuffer cbConstants
+{
+    Constants g_Constants;
+}
+
+StructuredBuffer<uint> g_OITLayers;
+Texture2D<float4>      g_OITTail;
+
+struct PSOutput
+{
+    float4 Color : SV_TARGET;
+};
+
+void main(in float4 Pos : SV_Position,
+          out PSOutput PSOut)
+{
+    uint Offset = GetOITLayerDataOffset(uint2(Pos.xy), g_Constants.ScreenSize);
+    float T = 1.0;
+    uint layer = 0u;
+    while (layer < uint(NUM_OIT_LAYERS))
+    {
+        uint LayerDT = g_OITLayers[Offset + layer];
+        if (LayerDT == 0xFFFFFFFFu)
+            break;
+        T *= GetOITLayerTransmittance(LayerDT);
+        ++layer;
+    }
+    if (layer == uint(NUM_OIT_LAYERS))
+    {
+        float4 Tail = g_OITTail.Load(int3(Pos.xy, 0));
+        T *= Tail.a;
+    }
+    if (T == 1.0)
+        discard;
+
+    // RGB blend: Src * 0 + Dst * SrcA
+    PSOut.Color = float4(0.0, 0.0, 0.0, T);
+}
+#include "common.fxh"
+#include "oit.fxh"
+
+cbuffer cbConstants
+{
+    Constants g_Constants;
+}
+
+RWStructuredBuffer<uint> g_rwOITLayers;
+
+[numthreads(THREAD_GROUP_SIZE, THREAD_GROUP_SIZE, 1)]
+void main(uint3 ThreadID : SV_DispatchThreadID)
+{
+    if (ThreadID.x >= g_Constants.ScreenSize.x ||
+        ThreadID.y >= g_Constants.ScreenSize.y)
+        return;
+    
+    uint Offset = GetOITLayerDataOffset(ThreadID.xy, g_Constants.ScreenSize);
+    for (uint layer = 0; layer < uint(NUM_OIT_LAYERS); ++layer)
+    {
+        g_rwOITLayers[Offset + layer] = 0xFFFFFFFFu;
+    }
+}
+struct Constants
+{
+    float4x4 ViewProj;
+    float4   LightDir;
+    
+    float MinOpacity;
+    float MaxOpacity;
+    uint2 ScreenSize;
+};
+
+#ifndef __cplusplus
+struct PSInput 
+{ 
+    float4 Pos    : SV_POSITION; 
+    float3 Normal : TEX_COORD; 
+    float4 Color  : COLOR;
+};
+
+float3 ComputeLighting(float3 Color, float3 Normal, float3 LightDir)
+{
+    float3 LightColor   = float3(0.75, 0.75, 0.75);
+    float3 AmbientColor = float3(0.25, 0.25, 0.25);
+    float DiffuseIntensity = max(0, dot(Normal, -LightDir));
+    return Color * (AmbientColor + LightColor * DiffuseIntensity);
+}
+
+#define OPACITY_THRESHOLD (1.0/255.0)
+
+#endif
+#include "common.fxh"
+
+cbuffer cbConstants
+{
+    Constants g_Constants;
+}
+
+struct VSInput
+{
+    // Vertex attributes
+    float3 Pos      : ATTRIB0; 
+    float3 Normal   : ATTRIB1;
+
+    // Instance attributes
+    float4 TranslationAndScale : ATTRIB2;
+    float4 Color               : ATTRIB3;
+};
+
+void main(in  VSInput VSIn,
+          out PSInput PSIn) 
+{
+    float3 Pos = VSIn.Pos * VSIn.TranslationAndScale.w + VSIn.TranslationAndScale.xyz;
+    PSIn.Pos     = mul(float4(Pos, 1.0), g_Constants.ViewProj);
+    PSIn.Normal  = VSIn.Normal;
+    PSIn.Color   = VSIn.Color;
+}
+#include "common.fxh"
+#include "oit.fxh"
+
+cbuffer cbConstants
+{
+    Constants g_Constants;
+}
+
+StructuredBuffer<uint> g_OITLayers;
+Texture2D<float4>      g_OITTail;
+
+struct PSOutput
+{
+    float4 Color : SV_TARGET;
+};
+
+void main(in PSInput   PSIn,
+          out PSOutput PSOut)
+{
+    float4 Color;
+    Color.rgb = ComputeLighting(PSIn.Color.rgb, PSIn.Normal, g_Constants.LightDir.xyz);
+    Color.a   = lerp(g_Constants.MinOpacity, g_Constants.MaxOpacity, PSIn.Color.a);
+    Color.rgb *= Color.a;
+    if (Color.a > OPACITY_THRESHOLD)
+    {
+        float Depth = PSIn.Pos.z;
+        uint D = uint(Depth * 16777215.0);
+        float T = 1.0;
+    
+        uint Offset = GetOITLayerDataOffset(uint2(PSIn.Pos.xy), g_Constants.ScreenSize);
+
+        uint layer = 0u;
+        while (layer < uint(NUM_OIT_LAYERS))
+        {
+            uint LayerDT = g_OITLayers[Offset + layer];
+            uint LayerD = GetOITLayerDepth(LayerDT);
+            // +1u helps to avoid precision issues.
+            if (D <= LayerD + 1u)
+            {
+                break;
+            }
+            float LayerT = GetOITLayerTransmittance(LayerDT);
+            T *= LayerT;
+            ++layer;
+        }
+        if (layer == uint(NUM_OIT_LAYERS))
+        {
+            float4 Tail = g_OITTail.Load(int3(PSIn.Pos.xy, 0));
+            // Average contribution of all tail layers.
+            T /= max(255.0 * Tail.x, 1.0);
+        }
+
+        Color.rgb *= T;
+    }
+
+#if CONVERT_PS_OUTPUT_TO_GAMMA
+    // Use fast approximation for gamma correction.
+    Color.rgb = pow(Color.rgb, float3(1.0 / 2.2, 1.0 / 2.2, 1.0 / 2.2));
+#endif
+    // RGB Blend: Src * 1 + Dst * 1
+    PSOut.Color = Color;
+}
+uint PackOITLayer(float Depth, float Transmittance)
+{
+    // Pack depth into the high 24 bits so that packed values
+    // can be sorted by depth.
+    uint D = uint(clamp(Depth, 0.0, 1.0) * 16777215.0);
+    uint T = uint(clamp(Transmittance, 0.0, 1.0) * 255.0);
+    return (D << 8u) | T;
+}
+
+uint GetOITLayerDepth(uint Layer)
+{
+    return Layer >> 8u;
+}
+
+float GetOITLayerTransmittance(uint Layer)
+{
+    return float(Layer & 0xFFu) / 255.0;
+}
+
+uint GetOITLayerDataOffset(uint2 PixelCoord, uint2 ScreenSize)
+{
+    return (PixelCoord.y * ScreenSize.x + PixelCoord.x) * uint(NUM_OIT_LAYERS);
+}
+
+void main(in  uint VertexID : SV_VertexID,
+          out float4 Pos : SV_Position)
+{
+    float4 TriVerts[3];
+    TriVerts[0] = float4(-1.0, -1.0, 0.0, 1.0);
+    TriVerts[1] = float4(-1.0, +3.0, 0.0, 1.0);
+    TriVerts[2] = float4(+3.0, -1.0, 0.0, 1.0);
+    Pos = TriVerts[VertexID];
+}
+#include "common.fxh"
+#include "oit.fxh"
+
+cbuffer cbConstants
+{
+    Constants g_Constants;
+}
+
+// WebGPU does not support the earlydepthstencil attribute, so we have
+// to manually perform the depth test in the shader.
+#if USE_MANUAL_DEPTH_TEST
+Texture2D<float> g_DepthBuffer;
+#endif
+
+RWStructuredBuffer<uint> g_rwOITLayers;
+
+// By default, early depth stencil will be disabled for this shader because it writes to a UAV.
+// Force it to be enabled.
+[earlydepthstencil]
+float4 main(in PSInput PSIn) : SV_Target
+{
+    float D = PSIn.Pos.z;
+#if USE_MANUAL_DEPTH_TEST
+    if (D >= g_DepthBuffer.Load(int3(PSIn.Pos.xy, 0)))
+    {
+        discard;
+    }
+#endif
+
+    float A = lerp(g_Constants.MinOpacity, g_Constants.MaxOpacity, PSIn.Color.a);
+    uint Layer = 0xFFFFFFFFu;
+    if (A > OPACITY_THRESHOLD)
+    {
+        float T = 1.0 - A;
+        Layer = PackOITLayer(D, T);
+        uint Offset = GetOITLayerDataOffset(uint2(PSIn.Pos.xy), g_Constants.ScreenSize);
+        for (uint i = 0; i < uint(NUM_OIT_LAYERS); ++i)
+        {
+            uint OrigLayer;
+            InterlockedMin(g_rwOITLayers[Offset + i], Layer, OrigLayer);
+            if (OrigLayer == 0xFFFFFFFFu || // Empty space
+                OrigLayer == Layer)         // Layer matches another one exactly
+            {
+                // Do not update tail transmittance
+                Layer = 0xFFFFFFFFu;
+                break;
+            }
+            // Layer > OrigLayer: we did not insert the layer
+            // Layer < OrigLayer: we inserted the layer, so now we need to insert the original layer
+            Layer = max(Layer, OrigLayer);
+        }
+    }
+    
+    // RGB Blend: Src * 1 + Dst * 1
+    // A   Blend: Src * 0 + Dst * SrcA
+    if (Layer == 0xFFFFFFFFu)
+    {
+        return float4(0.0, 0.0, 0.0, 1.0);
+    }
+    else
+    {
+        float TailT = GetOITLayerTransmittance(Layer);
+        return float4(1.0 / 255.0, 0.0, 0.0, TailT);
+    }
+}
+#include "common.fxh"
+
+cbuffer cbConstants
+{
+    Constants g_Constants;
+}
+
+struct PSOutput
+{
+    float4 Color  : SV_TARGET0;
+    float4 Reveal : SV_TARGET1;
+};
+
+void main(in PSInput   PSIn,
+          out PSOutput PSOut)
+{
+    float4 Color;
+    Color.rgb = ComputeLighting(PSIn.Color.rgb, PSIn.Normal, g_Constants.LightDir.xyz);
+    Color.a = lerp(g_Constants.MinOpacity, g_Constants.MaxOpacity, PSIn.Color.a);
+    Color.rgb *= Color.a;
+
+    float DepthWeight = 1.0 - PSIn.Pos.z * 0.95;
+    float AlphaWeight = max(min(1.0, max(max(Color.r, Color.g), Color.b) * Color.a), Color.a);
+
+    float Weight = AlphaWeight * DepthWeight;
+    Weight = clamp(Weight * Weight * Weight * 1e+3, 1e-2, 3e+2);
+    
+    // Blend:  Src * 1 + Dst * 1
+    PSOut.Color = Color * Weight;
+
+    // Blend:  Src * 0 + Dst * (1 - SrcA)
+    PSOut.Reveal = float4(0.0, 0.0, 0.0, Color.a);
+}
+#include "common.fxh"
+
+Texture2D<float4> g_Color;
+Texture2D<float>  g_Reveal;
+
+struct PSOutput
+{
+    float4 Color : SV_TARGET;
+};
+
+void main(in float4 Pos : SV_Position,
+          out PSOutput PSOut)
+{
+    float4 Color  = g_Color.Load(int3(Pos.xy, 0));
+    float  Reveal = g_Reveal.Load(int3(Pos.xy, 0));
+    // Blend:  Src * (1.0 - SrcA) + Dst * SrcA
+    PSOut.Color = float4(Color.rgb / max(Color.a, 1e-5), Reveal);
+}
