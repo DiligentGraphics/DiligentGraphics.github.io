@@ -1,0 +1,319 @@
+#include "structures.fxh"
+#include "particles.fxh"
+
+cbuffer Constants
+{
+    GlobalConstants g_Constants;
+};
+
+#ifndef THREAD_GROUP_SIZE
+#   define THREAD_GROUP_SIZE 64
+#endif
+
+#ifndef UPDATE_SPEED
+#   define UPDATE_SPEED 0
+#endif
+
+RWStructuredBuffer<ParticleAttribs> g_Particles;
+
+// Metal backend has a limitation that structured buffers must have
+// different element types. So we use a struct to wrap the particle index.
+struct HeadData
+{
+    int FirstParticleIdx;
+};
+StructuredBuffer<HeadData> g_ParticleListHead;
+
+StructuredBuffer<int> g_ParticleLists;
+
+// https://en.wikipedia.org/wiki/Elastic_collision
+void CollideParticles(inout ParticleAttribs P0, in ParticleAttribs P1)
+{
+    float2 R01 = (P1.f2Pos.xy - P0.f2Pos.xy) / g_Constants.f2Scale.xy;
+    float d01 = length(R01);
+    R01 /= d01;
+    if (d01 < P0.fSize + P1.fSize)
+    {
+#if UPDATE_SPEED
+        // The math for speed update is only valid for two-particle collisions.
+        if (P0.iNumCollisions == 1 && P1.iNumCollisions == 1)
+        {
+            float v0 = dot(P0.f2Speed.xy, R01);
+            float v1 = dot(P1.f2Speed.xy, R01);
+
+            float m0 = P0.fSize * P0.fSize;
+            float m1 = P1.fSize * P1.fSize;
+
+            float new_v0 = ((m0 - m1) * v0 + 2.0 * m1 * v1) / (m0 + m1);
+            P0.f2NewSpeed += (new_v0 - v0) * R01;
+        }
+#else
+        {
+            // Move the particle away
+            P0.f2NewPos += -R01 * (P0.fSize + P1.fSize - d01) * g_Constants.f2Scale.xy * 0.51;
+
+            // Set our fake temperature to 1 to indicate collision
+            P0.fTemperature = 1.0;
+
+            // Count the number of collisions
+            P0.iNumCollisions += 1;
+        }
+#endif
+    }
+}
+
+[numthreads(THREAD_GROUP_SIZE, 1, 1)]
+void main(uint3 Gid  : SV_GroupID,
+          uint3 GTid : SV_GroupThreadID)
+{
+    uint uiGlobalThreadIdx = Gid.x * uint(THREAD_GROUP_SIZE) + GTid.x;
+    if (uiGlobalThreadIdx >= g_Constants.uiNumParticles)
+        return;
+
+    int iParticleIdx = int(uiGlobalThreadIdx);
+    ParticleAttribs Particle = g_Particles[iParticleIdx];
+    
+    int2 i2GridPos = GetGridLocation(Particle.f2Pos, g_Constants.i2ParticleGridSize).xy;
+    int GridWidth  = g_Constants.i2ParticleGridSize.x;
+    int GridHeight = g_Constants.i2ParticleGridSize.y;
+
+#if !UPDATE_SPEED
+    Particle.f2NewPos       = Particle.f2Pos;
+    Particle.iNumCollisions = 0;
+#else
+    Particle.f2NewSpeed     = Particle.f2Speed;
+    // Only update speed when there is single collision with another particle.
+    if (Particle.iNumCollisions == 1)
+    {
+#endif
+        for (int y = max(i2GridPos.y - 1, 0); y <= min(i2GridPos.y + 1, GridHeight-1); ++y)
+        {
+            for (int x = max(i2GridPos.x - 1, 0); x <= min(i2GridPos.x + 1, GridWidth-1); ++x)
+            {
+                int AnotherParticleIdx = g_ParticleListHead[x + y * GridWidth].FirstParticleIdx;
+                while (AnotherParticleIdx >= 0)
+                {
+                    if (iParticleIdx != AnotherParticleIdx)
+                    {
+                        ParticleAttribs AnotherParticle = g_Particles[AnotherParticleIdx];
+                        CollideParticles(Particle, AnotherParticle);
+                    }
+
+                    AnotherParticleIdx = g_ParticleLists[AnotherParticleIdx];
+                }
+            }
+        }
+#if UPDATE_SPEED
+    }
+    else if (Particle.iNumCollisions > 1)
+    {
+        // If there are multiple collisions, reverse the particle move direction to
+        // avoid particle crowding.
+        Particle.f2NewSpeed = -Particle.f2Speed;
+    }
+#else
+    ClampParticlePosition(Particle.f2NewPos, Particle.f2Speed, Particle.fSize, g_Constants.f2Scale);
+#endif
+
+    g_Particles[iParticleIdx] = Particle;
+}
+#include "structures.fxh"
+#include "particles.fxh"
+
+cbuffer Constants
+{
+    GlobalConstants g_Constants;
+};
+
+#ifndef THREAD_GROUP_SIZE
+#   define THREAD_GROUP_SIZE 64
+#endif
+
+RWStructuredBuffer<ParticleAttribs> g_Particles;
+
+// Metal backend has a limitation that structured buffers must have
+// different element types. So we use a struct to wrap the particle index.
+struct HeadData
+{
+    int FirstParticleIdx;
+};
+RWStructuredBuffer<HeadData> g_ParticleListHead;
+
+RWStructuredBuffer<int> g_ParticleLists;
+
+[numthreads(THREAD_GROUP_SIZE, 1, 1)]
+void main(uint3 Gid  : SV_GroupID,
+          uint3 GTid : SV_GroupThreadID)
+{
+    uint uiGlobalThreadIdx = Gid.x * uint(THREAD_GROUP_SIZE) + GTid.x;
+    if (uiGlobalThreadIdx >= g_Constants.uiNumParticles)
+        return;
+
+    int iParticleIdx = int(uiGlobalThreadIdx);
+
+    ParticleAttribs Particle = g_Particles[iParticleIdx];
+    Particle.f2Pos   = Particle.f2NewPos;
+    Particle.f2Speed = Particle.f2NewSpeed;
+    Particle.f2Pos  += Particle.f2Speed * g_Constants.f2Scale * g_Constants.fDeltaTime;
+    Particle.fTemperature -= Particle.fTemperature * min(g_Constants.fDeltaTime * 2.0, 1.0);
+
+    ClampParticlePosition(Particle.f2Pos, Particle.f2Speed, Particle.fSize, g_Constants.f2Scale);
+    g_Particles[iParticleIdx] = Particle;
+
+    // Bin particles
+    int GridIdx = GetGridLocation(Particle.f2Pos, g_Constants.i2ParticleGridSize).z;
+    int OriginalListIdx;
+    InterlockedExchange(g_ParticleListHead[GridIdx].FirstParticleIdx, iParticleIdx, OriginalListIdx);
+    g_ParticleLists[iParticleIdx] = OriginalListIdx;
+}
+struct PSInput 
+{ 
+    float4 Pos  : SV_POSITION; 
+    float2 uv   : TEX_COORD;
+    float  Temp : TEMPERATURE;
+};
+
+struct PSOutput
+{
+    float4 Color : SV_TARGET;
+};
+
+void main(in  PSInput  PSIn,
+          out PSOutput PSOut)
+{
+    float r = length(PSIn.uv.xy - float2(0.5, 0.5)) * 2.0;
+    if(r > 1.0)
+        discard;
+
+    float intensity = sqrt(saturate(1.0 - r));
+    float3 Color = lerp(float3(0.0, 0.63, 0.9), float3(1.0, 0.78, 0.05), PSIn.Temp) * intensity;
+#if CONVERT_PS_OUTPUT_TO_GAMMA
+    // Use fast approximation for gamma correction.
+    Color = pow(Color, float3(1.0 / 2.2, 1.0 / 2.2, 1.0 / 2.2));
+#endif
+    PSOut.Color = float4(Color, sqrt(intensity));
+}
+#include "structures.fxh"
+
+cbuffer Constants
+{
+    GlobalConstants g_Constants;
+};
+
+StructuredBuffer<ParticleAttribs> g_Particles;
+
+struct VSInput
+{
+    uint VertID : SV_VertexID;
+    uint InstID : SV_InstanceID;
+};
+
+struct PSInput 
+{ 
+    float4 Pos  : SV_POSITION; 
+    float2 uv   : TEX_COORD;
+    float  Temp : TEMPERATURE;
+};
+
+void main(in  VSInput VSIn,
+          out PSInput PSIn)
+{
+    float4 pos_uv[4];
+    pos_uv[0] = float4(-1.0,+1.0, 0.0,0.0);
+    pos_uv[1] = float4(-1.0,-1.0, 0.0,1.0);
+    pos_uv[2] = float4(+1.0,+1.0, 1.0,0.0);
+    pos_uv[3] = float4(+1.0,-1.0, 1.0,1.0);
+
+    ParticleAttribs Attribs = g_Particles[VSIn.InstID];
+
+    float2 pos = pos_uv[VSIn.VertID].xy * g_Constants.f2Scale.xy;
+    pos = pos * Attribs.fSize + Attribs.f2Pos;
+    PSIn.Pos = float4(pos, 0.0, 1.0);
+    PSIn.uv = pos_uv[VSIn.VertID].zw;
+    PSIn.Temp = Attribs.fTemperature;
+}
+
+void ClampParticlePosition(inout float2 f2Pos,
+                           inout float2 f2Speed,
+                           in    float  fSize,
+                           in    float2 f2Scale)
+{
+    if (f2Pos.x + fSize * f2Scale.x > 1.0)
+    {
+        f2Pos.x -= f2Pos.x + fSize * f2Scale.x - 1.0;
+        f2Speed.x *= -1.0;
+    }
+
+    if (f2Pos.x - fSize * f2Scale.x < -1.0)
+    {
+        f2Pos.x += -1.0 - (f2Pos.x - fSize * f2Scale.x);
+        f2Speed.x *= -1.0;
+    }
+
+    if (f2Pos.y + fSize * f2Scale.y > 1.0)
+    {
+        f2Pos.y -= f2Pos.y + fSize * f2Scale.y - 1.0;
+        f2Speed.y *= -1.0;
+    }
+
+    if (f2Pos.y - fSize * f2Scale.y < -1.0)
+    {
+        f2Pos.y += -1.0 - (f2Pos.y - fSize * f2Scale.y);
+        f2Speed.y *= -1.0;
+    }
+}
+
+int3 GetGridLocation(float2 f2Pos, int2 i2ParticleGridSize)
+{
+    int3 i3GridPos;
+    i3GridPos.x = clamp(int((f2Pos.x + 1.0) * 0.5 * float(i2ParticleGridSize.x)), 0, i2ParticleGridSize.x - 1);
+    i3GridPos.y = clamp(int((f2Pos.y + 1.0) * 0.5 * float(i2ParticleGridSize.y)), 0, i2ParticleGridSize.y - 1);
+    i3GridPos.z = i3GridPos.x + i3GridPos.y * i2ParticleGridSize.x;
+    return i3GridPos;
+}
+#include "structures.fxh"
+
+cbuffer Constants
+{
+    GlobalConstants g_Constants;
+};
+
+#ifndef THREAD_GROUP_SIZE
+#   define THREAD_GROUP_SIZE 64
+#endif
+
+RWStructuredBuffer<int> g_ParticleListHead;
+
+[numthreads(THREAD_GROUP_SIZE, 1, 1)]
+void main(uint3 Gid  : SV_GroupID,
+          uint3 GTid : SV_GroupThreadID)
+{
+    uint uiGlobalThreadIdx = Gid.x * uint(THREAD_GROUP_SIZE) + GTid.x;
+    if (uiGlobalThreadIdx < uint(g_Constants.i2ParticleGridSize.x * g_Constants.i2ParticleGridSize.y))
+        g_ParticleListHead[uiGlobalThreadIdx] = -1;
+}
+
+struct ParticleAttribs
+{
+    float2 f2Pos;
+    float2 f2NewPos;
+
+    float2 f2Speed;
+    float2 f2NewSpeed;
+
+    float  fSize;
+    float  fTemperature;
+    int    iNumCollisions;
+    float  fPadding0;
+};
+
+struct GlobalConstants
+{
+    uint   uiNumParticles;
+    float  fDeltaTime;
+    float  fDummy0;
+    float  fDummy1;
+
+    float2 f2Scale;
+    int2   i2ParticleGridSize;
+};
