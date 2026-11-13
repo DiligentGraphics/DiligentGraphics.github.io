@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Diligent Graphics">
+    <title>Diligent Graphics</title>
+    <link rel="icon" href="images/header/diligentgraphics-icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <a href="https://diligentgraphics.com/" target="_blank">
+        <img src="images/header/diligentgraphics-logo.png" alt="Diligent Graphics" class="logo">
+    </a>
+    <a href="https://github.com/DiligentGraphics/DiligentEngine" class="github-link" target="_blank">
+        <img src="images/header/github-mark-white.png" alt="GitHub">
+    </a>
+</header>
+
+<div class="container">
+    <nav>
+        <h2>Categories</h2>
+        <ul>
+            <li><a href="#diligent-engine">Description</a></li>
+            <li><a href="#tutorials">Tutorials</a></li>
+            <li><a href="#samples">Samples</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <section id="diligent-engine">
+            <div class="engine-header">
+                <h1>Diligent Engine</h1>
+                <img src="images/header/diligentgraphics-logo.png" height="64" alt="Diligent Graphics Logo">
+            </div>
+
+            <p class="description">
+                <a href="http://diligentgraphics.com/diligent-engine/" target="_blank">Diligent Engine</a>
+                is a high-performance, lightweight graphics API abstraction layer and rendering framework designed for seamless cross-platform development.
+                It provides a unified interface that leverages the power of modern graphics APIs such as Direct3D12, Vulkan, Metal, and WebGPU, while
+                also maintaining robust support for legacy platforms through Direct3D11, OpenGL, OpenGLES, and WebGL.
+                <br />
+                Diligent Engine offers a single, consistent front-end API and utilizes HLSL as its universal shading language across all platforms
+                and rendering back-ends. Additionally, it supports platform-specific shader formats, including GLSL, MSL, DirectX bytecode,
+                and SPIR-V, enabling developers to optimize graphics performance on each targeted system.
+                <br />
+                Engineered for versatility, Diligent Engine serves as an ideal graphics subsystem for integration into game engines,
+                interactive simulations, and any other 3D visualization applications. It is open-source and distributed under the permissive
+                <a href="https://github.com/DiligentGraphics/DiligentEngine/blob/master/License.txt" target="_blank">Apache 2.0 license</a>,
+                ensuring that developers can freely use and adapt the engine within their projects.
+            </p>
+
+            <div class="badges">
+                <a href="https://discord.gg/t7HGBK7" target="_blank">
+                    <img src="https://img.shields.io/discord/730091778081947680?logo=discord" alt="Chat on Discord">
+                </a>
+                <a href="https://github.com/DiligentGraphics/DiligentEngine/actions/" target="_blank">
+                    <img src="https://img.shields.io/github/actions/workflow/status/DiligentGraphics/DiligentEngine/build-emscripten.yml?branch=master&label=Build%20Status">
+                </a>
+                <a href="https://github.com/DiligentGraphics/DiligentEngine/blob/master/License.txt" target="_blank">
+                    <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License">
+                </a>
+                <a href="https://diligentgraphics.github.io/docs" target="_blank">
+                    <img src="https://img.shields.io/badge/Documentation-online-0072B1?logo=readthedocs&logoColor=white" alt="Documentation">
+                </a>
+            </div>
+        </section>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search Example">
+            <span class="search-icon"></span>
+        </div>
+
+        <section id="tutorials">
+            <h2>Tutorials</h2>
+            <div class="grid" id="tutorialGrid">
+            </div>
+        </section>
+
+        <section id="samples">
+            <h2>Samples</h2>
+            <div class="grid" id="samplesGrid">
+            </div>
+        </section>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
