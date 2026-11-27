@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['newframe_0',['NewFrame',['../d6/daf/classDiligent_1_1ImGuiImplDiligent.html#a734e01aa6d6bf1e9f3ac1895e7f1e0b3',1,'Diligent::ImGuiImplDiligent']]],
+  ['nextsubpass_1',['NextSubpass',['../d9/dcf/classDiligent_1_1IDeviceContext.html#a81227a2dad215661a44631d6119ee139',1,'Diligent.IDeviceContext::NextSubpass()'],['../df/d20/classDiligent_1_1DeviceContextD3D11Impl.html#ac3937c1a86b4c387fce024d562c156d0',1,'Diligent::DeviceContextD3D11Impl::NextSubpass()'],['../de/dc6/classDiligent_1_1DeviceContextD3D12Impl.html#a8c2ad8d1d0f84db4162b928e1e082932',1,'Diligent::DeviceContextD3D12Impl::NextSubpass()'],['../d5/d1c/classDiligent_1_1DeviceContextGLImpl.html#a60f9fa48156ba33466e9e0baca81ce40',1,'Diligent::DeviceContextGLImpl::NextSubpass()'],['../d6/d89/classDiligent_1_1DeviceContextVkImpl.html#a585eddd764035dbace6c03add01b4253',1,'Diligent::DeviceContextVkImpl::NextSubpass()'],['../db/ddf/classDiligent_1_1DeviceContextWebGPUImpl.html#ab5851ac93ae640430f518784733ca3c5',1,'Diligent::DeviceContextWebGPUImpl::NextSubpass()']]]
+];
